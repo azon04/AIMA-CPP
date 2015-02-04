@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VacumCleanerPerformanceMeasuring", "VacumCleanerPerformanceMeasuring\VacumCleanerPerformanceMeasuring.vcxproj", "{27743CB3-64E1-43E6-88DC-9039EF0B32B8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UninformedSearchStrategies", "UninformedSearchStrategies\UninformedSearchStrategies.vcxproj", "{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{27743CB3-64E1-43E6-88DC-9039EF0B32B8}.Debug|Win32.Build.0 = Debug|Win32
 		{27743CB3-64E1-43E6-88DC-9039EF0B32B8}.Release|Win32.ActiveCfg = Release|Win32
 		{27743CB3-64E1-43E6-88DC-9039EF0B32B8}.Release|Win32.Build.0 = Release|Win32
+		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Debug|Win32.Build.0 = Debug|Win32
+		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Release|Win32.ActiveCfg = Release|Win32
+		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
