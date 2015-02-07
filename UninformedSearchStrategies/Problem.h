@@ -5,7 +5,7 @@
 class Action {
 public:
 	Action();
-	Action(std::string&);
+	Action(const std::string&);
 	~Action();
 
 	const std::string& getName();
@@ -29,6 +29,8 @@ public:
 	Node* operator[](Action&);
 
 	std::vector<Action*>& getActions();
+
+	void setAction(Action*, Node*);
 
 private:
 	/* Data Member */

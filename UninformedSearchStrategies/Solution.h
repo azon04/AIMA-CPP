@@ -19,4 +19,4 @@ private:
 	Action* currentAction;
 };
 
-std::ostream operator<<(std::ostream& os, const Solution&);
+std::ostream& operator<<(std::ostream& os, Solution*);

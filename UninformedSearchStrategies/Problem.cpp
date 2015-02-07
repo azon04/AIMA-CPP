@@ -7,7 +7,7 @@ Action::Action() : name("DefaultName")
 
 }
 
-Action::Action(std::string& _name) : name(_name)
+Action::Action(const std::string& _name) : name(_name)
 {
 
 }
@@ -69,5 +69,52 @@ std::vector<Action*>& Node::getActions()
 	return actions;
 }
 
-/* PROBLEM CLASS */
+void Node::setAction(Action* _action, Node* _node)
+{
+	actions.push_back(_action);
+	relatedNodes.insert(std::pair<std::string, Node*>(_action->getName(), _node));
+}
 
+/* PROBLEM CLASS */
+Problem::Problem()
+: name("Problem"), startNode (0), goalState("goal") 
+{
+
+}
+
+Problem::~Problem() 
+{
+
+}
+
+void Problem::setStart(Node* _node)
+{
+	startNode = _node;
+}
+
+void Problem::setGoal(const std::string& _goal) 
+{
+	goalState = _goal;
+}
+
+bool Problem::isGoal(Node* _node)
+{
+	if (_node->getState().compare(goalState) == 0) 
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}
+
+Node* Problem::getStartedNode()
+{
+	return startNode;
+}
+
+std::vector<Action*>& Problem::getActions()
+{
+	return actions;
+}

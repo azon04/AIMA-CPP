@@ -1,79 +1,96 @@
 #include "Graph_BFS.h"
+#include "Graph_DFS.h"
 
 int main()
 {
 	/* road map Romania Problem */
-	Node arad;
-	arad.state = "Arad";
-	arad.numAction = 0;
 
-	Node sibiu;
-	sibiu.state = "Sibiu";
-	sibiu.numAction = 0;
+	// States
+	Node arad("Arad");
+	Node sibiu("Sibiu");
+	Node timisoara("Timisoara");
+	Node zerind("Zerind");
+	Node oradea("Oradea");
+	Node faragas("Faragas");
+	Node rimnicu_vilcea("Rimnicu Vilcea");
+	Node pitesti("Pitesti");
+	Node lugoj("Lugoj");
+	Node mehadia("Mehadia");
+	Node drobeta("Drobeta");
+	Node craiova("Craiova");
+	Node bucharest("Bucharest");
+	Node giurgiu("Giurgiu");
+	Node urziceni("Urziceni");
+	Node hirsova("Hirsova");
+	Node eforie("Eforie");
+	Node vaslui("Vaslui");
+	Node iasi("Iasi");
+	Node neamt("Neamt");
 
-	Node timisoara;
-	timisoara.state = "Timisoara";
+	// Actions
+	Action go("GO"), 
+		go1("GO1"), 
+		go2("GO2"), 
+		go3("GO3"); // Since there are maximum 4 branching of "go" 
+	
+	// Model Transition
+	arad.setAction(&go, &sibiu);
+	arad.setAction(&go1, &zerind);
+	arad.setAction(&go2, &timisoara);
+	sibiu.setAction(&go, &arad);
+	sibiu.setAction(&go1, &oradea);
+	sibiu.setAction(&go2, &faragas);
+	sibiu.setAction(&go3, &rimnicu_vilcea);
+	zerind.setAction(&go, &arad);
+	zerind.setAction(&go1, &oradea);
+	timisoara.setAction(&go, &arad);
+	timisoara.setAction(&go1, &lugoj);
+	oradea.setAction(&go, &zerind);
+	oradea.setAction(&go1, &sibiu);
+	faragas.setAction(&go, &sibiu);
+	faragas.setAction(&go1, &bucharest);
+	rimnicu_vilcea.setAction(&go, &sibiu);
+	rimnicu_vilcea.setAction(&go1, &pitesti);
+	rimnicu_vilcea.setAction(&go2, &craiova);
+	lugoj.setAction(&go, &timisoara);
+	lugoj.setAction(&go1, &mehadia);
+	bucharest.setAction(&go, &pitesti);
+	bucharest.setAction(&go1, &faragas);
+	bucharest.setAction(&go2, &urziceni);
+	bucharest.setAction(&go3, &giurgiu);
+	pitesti.setAction(&go, &rimnicu_vilcea);
+	pitesti.setAction(&go1, &craiova);
+	pitesti.setAction(&go2, &bucharest);
+	craiova.setAction(&go, &drobeta);
+	craiova.setAction(&go2, &rimnicu_vilcea);
+	craiova.setAction(&go3, &pitesti);
+	mehadia.setAction(&go, &lugoj);
+	mehadia.setAction(&go1, &drobeta);
+	urziceni.setAction(&go, &bucharest);
+	urziceni.setAction(&go1, &hirsova);
+	urziceni.setAction(&go2, &vaslui);
+	giurgiu.setAction(&go, &bucharest);
+	drobeta.setAction(&go, &mehadia);
+	drobeta.setAction(&go1, &craiova);
+	hirsova.setAction(&go, &urziceni);
+	hirsova.setAction(&go1, &eforie);
+	vaslui.setAction(&go, &urziceni);
+	vaslui.setAction(&go1, &iasi);
+	eforie.setAction(&go, &hirsova);
+	iasi.setAction(&go, &vaslui);
+	iasi.setAction(&go1, &neamt);
+	neamt.setAction(&go, &iasi);
 
-	Node zerind;
-	zerind.state = "Zerind";
+	// Problem
+	Problem problem;
+	problem.setStart(&arad);
+	problem.setGoal(bucharest.getState());
 
-	Node oradea;
-	oradea.state = "Oradea";
+	//Graph_BFS solver;
+	Graph_DFS solver;
+	Solution* solution = solver.Solve(&problem);
 
-	Node faragas;
-	faragas.state = "Faragas";
+	std::cout << solution;
 
-	Node rimnicu_vilcea;
-	rimnicu_vilcea.state = "Rimnicu Vilcea";
-
-	Node pitesti;
-	pitesti.state = "Pitesti";
-
-	Node lugoj;
-	lugoj.state = "Lugoj";
-
-	Node mehadia;
-	mehadia.state = "Mehadia";
-
-	Node drobeta;
-	drobeta.state = "Drobeta";
-
-	Node craiova;
-	craiova.state = "Craiova";
-
-	Node bucharest;
-	bucharest.state = "Bucharest";
-
-	Node giurgiu;
-	giurgiu.state = "Giurgiu";
-
-	Node urziceni;
-	urziceni.state = "Urziceni";
-
-	Node hirsova;
-	hirsova.state = "Hirsova";
-
-	Node eforie;
-	eforie.state = "Eforie";
-
-	Node vaslui;
-	vaslui.state = "Vaslui";
-
-	Node iasi;
-	iasi.state = "Iasi";
-
-	Node neamt;
-	neamt.state = "Neamt";
-
-	ActionAddress aradToSibiu;
-	GenerateAction(&aradToSibiu, "Arad to Sibiu",  (NodeAddress) &sibiu);
-	AddAction( (NodeAddress) &arad, aradToSibiu);
-
-	ActionAddress sibiuToArad;
-	GenerateAction(&sibiuToArad, "Sibiu to Arad", (NodeAddress)&arad);
-	AddAction((NodeAddress)&sibiu, sibiuToArad);
-
-	free(aradToSibiu);
-	free(sibiuToArad);
 	return 0;
 }
