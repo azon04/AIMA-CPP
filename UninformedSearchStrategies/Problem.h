@@ -83,3 +83,8 @@ class CompareNodeWithCost{
 public:
 	bool operator()(NodeWithCost&, NodeWithCost&);
 };
+
+class CompareNodeWithCostMap {
+public:
+	bool operator()(NodeWithCost, NodeWithCost);
+};

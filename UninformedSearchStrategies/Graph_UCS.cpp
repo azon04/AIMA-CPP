@@ -34,8 +34,8 @@ Solution* Graph_UCS::Solve(Problem* problem)
 	NodeWithCost nodeWithCost(node, 0);
 	frontier.push(nodeWithCost);
 
-	std::map<Node*, Solution*> solutionFrontier;
-	solutionFrontier.insert(std::pair<Node*, Solution*>(node,solution));
+	std::map<NodeWithCost, Solution*, CompareNodeWithCostMap> solutionFrontier;
+	solutionFrontier.insert(std::pair<NodeWithCost, Solution*>(nodeWithCost, solution));
 
 	// Explored array
 	std::vector<Node*> explored;
@@ -46,9 +46,15 @@ Solution* Graph_UCS::Solve(Problem* problem)
 		node = nodeWC.getNode();
 		path_cost = nodeWC.getCost();
 		std::cout << "explore : " << node->getState().c_str() << " cost : " << nodeWC.getCost() << std::endl;
-		prevSolution = solutionFrontier[nodeWC.getNode()]; solutionFrontier[nodeWC.getNode()] = 0;
+		prevSolution = solutionFrontier[nodeWC]; solutionFrontier[nodeWC] = 0;
 
 		explored.push_back(node);
+
+		// If Goal
+		if (problem->isGoal(node))
+		{
+			return prevSolution;
+		}
 
 		// Get Posible Action
 		std::vector<Action*> actions = node->getActions();
@@ -64,15 +70,10 @@ Solution* Graph_UCS::Solve(Problem* problem)
 				// Create Solution
 				solution = new Solution(prevSolution, child, action);
 
-				if (problem->isGoal(child))
-				{
-					return solution;
-				}
-
 				NodeWithCost nodeChildCost(child, path_cost + costs[i]);
-				std::cout << "checked : " << child->getState().c_str() << " cost : " << costs[i] << std::endl;
+				std::cout << prevSolution->getNode()->getState().c_str() <<" -- : " << child->getState().c_str() << " cost : " << costs[i] << std::endl;
 				frontier.push(nodeChildCost);
-				solutionFrontier.insert(std::pair<Node*, Solution*>(child, solution));
+				solutionFrontier.insert(std::pair<NodeWithCost, Solution*>(nodeChildCost, solution));
 				
 			}
 		}

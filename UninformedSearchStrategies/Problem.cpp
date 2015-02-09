@@ -166,3 +166,10 @@ bool CompareNodeWithCost::operator()(NodeWithCost& node1, NodeWithCost& node2)
 {
 	return (node1.getCost() > node2.getCost()) ? true : false;
 }
+
+/* Class CompareNodeWithCostMap*/
+/* For MAP<> */
+bool CompareNodeWithCostMap::operator()(NodeWithCost node1, NodeWithCost node2)
+{
+	return (node1.getCost() < node2.getCost());
+}

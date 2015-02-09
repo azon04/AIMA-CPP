@@ -46,6 +46,12 @@ Solution* Graph_BFS::Solve(Problem* problem)
 		// Get Posible Action
 		std::vector<Action*> actions = node->getActions();
 
+		// Check Goal
+		if (problem->isGoal(node))
+		{
+			return prevSolution;
+		}
+
 		for (int i = 0; i < actions.size(); i++)
 		{
 			Action* action = actions[i];
@@ -55,10 +61,6 @@ Solution* Graph_BFS::Solve(Problem* problem)
 				// Create Solution
 				solution = new Solution(prevSolution, child, action);
 
-				if (problem->isGoal(child))
-				{
-					return solution;
-				}
 
 				frontier.push(child);
 				solutionFrontier.push(solution);

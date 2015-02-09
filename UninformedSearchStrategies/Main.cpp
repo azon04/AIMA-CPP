@@ -1,6 +1,7 @@
 #include "Graph_BFS.h"
 #include "Graph_DFS.h"
 #include "Graph_UCS.h"
+#include "Recursive_DLS.h"
 
 int main()
 {
@@ -89,10 +90,14 @@ int main()
 
 	//Graph_BFS solver;
 	//Graph_DFS solver;
-	Graph_UCS solver;
-	Solution* solution = solver.Solve(&problem);
+	//Graph_UCS solver;
+	Recursive_DLS solver;
+	Solution* solution = solver.Solve(&problem, 5);
 
-	std::cout << solution;
+	if (solution)
+		std::cout << solution << std::endl;
+	else
+		std::cout << "No Solution Found" << std::endl;
 
 	return 0;
 }
