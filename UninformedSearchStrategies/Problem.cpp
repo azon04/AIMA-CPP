@@ -89,7 +89,7 @@ void Node::setAction(Action* _action, Node* _node, int _cost) {
 
 /* PROBLEM CLASS */
 Problem::Problem()
-: name("Problem"), startNode (0), goalState("goal") 
+: name("Problem"), startNode(0), goalState("goal"), goalNode(0)
 {
 
 }
@@ -109,9 +109,18 @@ void Problem::setGoal(const std::string& _goal)
 	goalState = _goal;
 }
 
+void Problem::setGoal(Node* _goal)
+{
+	goalNode = _goal;
+}
+
 bool Problem::isGoal(Node* _node)
 {
-	if (_node->getState().compare(goalState) == 0) 
+	if (goalNode)
+	{
+		return _node->getState().compare(goalNode->getState()) == 0;
+	}
+	else if (_node->getState().compare(goalState) == 0) 
 	{
 		return true;
 	}

@@ -59,3 +59,34 @@ std::ostream& operator<<(std::ostream& os, Solution* _solution)
 
 	return os;
 }
+
+void Solution::setPrevSolution(Solution* _prev)
+{
+	prevSolution = _prev;
+}
+
+Solution* reverse(Solution* _solution)
+{
+	Solution* solution = _solution;
+	Solution* tmpSolution;
+	Solution* result;
+	std::stack<Solution*> solutions;
+	solutions.push(solution);
+	while (solution->getPrevSolution() != NULL)
+	{
+		solution = solution->getPrevSolution();
+		solutions.push(solution);
+	}
+
+	tmpSolution = solutions.top(); solutions.pop();
+	result = tmpSolution;
+	while (!solutions.empty())
+	{
+		solution = solutions.top(); solutions.pop();
+		tmpSolution->setPrevSolution(solution);
+		tmpSolution = solution;
+	}
+
+	tmpSolution->setPrevSolution(0);
+	return result;
+}

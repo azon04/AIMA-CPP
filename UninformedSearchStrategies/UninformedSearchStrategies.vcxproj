@@ -78,17 +78,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BiSearch.h" />
     <ClInclude Include="Graph_BFS.h" />
     <ClInclude Include="Graph_DFS.h" />
     <ClInclude Include="Graph_UCS.h" />
+    <ClInclude Include="IDS.h" />
     <ClInclude Include="Problem.h" />
     <ClInclude Include="Recursive_DLS.h" />
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BiSearch.cpp" />
     <ClCompile Include="Graph_BFS.cpp" />
     <ClCompile Include="Graph_DFS.cpp" />
     <ClCompile Include="Graph_UCS.cpp" />
+    <ClCompile Include="IDS.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Problem.cpp" />
     <ClCompile Include="Recursive_DLS.cpp" />

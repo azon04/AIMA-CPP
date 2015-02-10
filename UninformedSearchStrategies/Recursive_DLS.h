@@ -10,8 +10,11 @@ public:
 
 	Solution* Solve(Problem*, int);
 
-private:
-	Solution* RDLS(Node*, Problem*, int);
+public:
 	Solution* cutOff;
+
+private:
+	Solution* RDLS(Node*, Problem*, int, Solution*, Action* action);
+	
 };
 

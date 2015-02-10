@@ -2,6 +2,7 @@
 #include "Graph_DFS.h"
 #include "Graph_UCS.h"
 #include "Recursive_DLS.h"
+#include "IDS.h"
 
 int main()
 {
@@ -91,9 +92,10 @@ int main()
 	//Graph_BFS solver;
 	//Graph_DFS solver;
 	//Graph_UCS solver;
-	Recursive_DLS solver;
-	Solution* solution = solver.Solve(&problem, 5);
-
+	//Recursive_DLS solver;
+	IDS solver;
+	Solution* solution = solver.Solve(&problem);
+	
 	if (solution)
 		std::cout << solution << std::endl;
 	else

@@ -51,6 +51,7 @@ public :
 
 	void setStart(Node*);
 	void setGoal(const std::string&);
+	void setGoal(Node*);
 
 	bool isGoal(Node*);
 
@@ -61,6 +62,7 @@ private:
 	/* Data Member */
 	std::string name;
 	Node* startNode;
+	Node* goalNode;
 	std::string goalState;
 	std::vector<Action*> actions;
 };
