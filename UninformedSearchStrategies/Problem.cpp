@@ -7,7 +7,7 @@ Action::Action() : name("DefaultName")
 
 }
 
-Action::Action(std::string& _name) : name(_name)
+Action::Action(const std::string& _name) : name(_name)
 {
 
 }
@@ -69,5 +69,116 @@ std::vector<Action*>& Node::getActions()
 	return actions;
 }
 
-/* PROBLEM CLASS */
+std::vector<int>& Node::getCosts()
+{
+	return costs;
+}
 
+void Node::setAction(Action* _action, Node* _node)
+{
+	costs.push_back(0);
+	actions.push_back(_action);
+	relatedNodes.insert(std::pair<std::string, Node*>(_action->getName(), _node));
+}
+
+void Node::setAction(Action* _action, Node* _node, int _cost) {
+	costs.push_back(_cost);
+	actions.push_back(_action);
+	relatedNodes.insert(std::pair<std::string, Node*>(_action->getName(), _node));
+}
+
+/* PROBLEM CLASS */
+Problem::Problem()
+: name("Problem"), startNode(0), goalState("goal"), goalNode(0)
+{
+
+}
+
+Problem::~Problem() 
+{
+
+}
+
+void Problem::setStart(Node* _node)
+{
+	startNode = _node;
+}
+
+void Problem::setGoal(const std::string& _goal) 
+{
+	goalState = _goal;
+}
+
+void Problem::setGoal(Node* _goal)
+{
+	goalNode = _goal;
+}
+
+bool Problem::isGoal(Node* _node)
+{
+	if (goalNode)
+	{
+		return _node->getState().compare(goalNode->getState()) == 0;
+	}
+	else if (_node->getState().compare(goalState) == 0) 
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}
+
+Node* Problem::getStartedNode()
+{
+	return startNode;
+}
+
+std::vector<Action*>& Problem::getActions()
+{
+	return actions;
+}
+
+/* CLASS NODEWITHCOST */
+NodeWithCost::NodeWithCost()
+: node(0), cost(0)
+{
+
+}
+
+NodeWithCost::NodeWithCost(Node* _node, int _cost)
+: node(_node), cost(_cost)
+{
+
+}
+
+NodeWithCost::~NodeWithCost()
+{
+
+}
+
+Node* NodeWithCost::getNode()
+{
+	return node;
+}
+
+int NodeWithCost::getCost()
+{
+	return cost;
+}
+
+/* Class CompareNodeWithCost */
+/* For priority Queue, check "http://comsci.liu.edu/~jrodriguez/cs631sp08/c++priorityqueue.html" */
+
+bool CompareNodeWithCost::operator()(NodeWithCost& node1, NodeWithCost& node2)
+{
+	return (node1.getCost() > node2.getCost()) ? true : false;
+}
+
+/* Class CompareNodeWithCostMap*/
+/* For MAP<> */
+bool CompareNodeWithCostMap::operator()(NodeWithCost node1, NodeWithCost node2)
+{
+	return (node1.getCost() < node2.getCost());
+}

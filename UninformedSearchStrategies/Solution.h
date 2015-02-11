@@ -12,6 +12,8 @@ public:
 	Solution* getPrevSolution();
 	Action* getAction();
 
+	void setPrevSolution(Solution*);
+
 private:
 	/* Data Member */
 	Node* currentNode;
@@ -19,4 +21,5 @@ private:
 	Action* currentAction;
 };
 
-std::ostream operator<<(std::ostream& os, const Solution&);
+std::ostream& operator<<(std::ostream& os, Solution*);
+Solution* reverse(Solution*);
