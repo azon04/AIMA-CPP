@@ -5,7 +5,7 @@
 class Action {
 public:
 	Action();
-	Action(std::string&);
+	Action(const std::string&);
 	~Action();
 
 	const std::string& getName();
@@ -29,13 +29,17 @@ public:
 	Node* operator[](Action&);
 
 	std::vector<Action*>& getActions();
+	std::vector<int>& getCosts();
 
+	void setAction(Action*, Node*);
+	void setAction(Action*, Node*, int);
 private:
 	/* Data Member */
 	std::string state;
 	Node* parent;
 	std::map<std::string, Node*> relatedNodes;
 	std::vector<Action*> actions;
+	std::vector<int> costs;
 };
 
 
@@ -47,6 +51,7 @@ public :
 
 	void setStart(Node*);
 	void setGoal(const std::string&);
+	void setGoal(Node*);
 
 	bool isGoal(Node*);
 
@@ -57,6 +62,31 @@ private:
 	/* Data Member */
 	std::string name;
 	Node* startNode;
+	Node* goalNode;
 	std::string goalState;
 	std::vector<Action*> actions;
+};
+
+class NodeWithCost{
+public:
+	NodeWithCost();
+	NodeWithCost(Node*, int);
+	~NodeWithCost();
+
+	Node* getNode();
+	int getCost();
+
+private:
+	Node* node;
+	int cost;
+};
+
+class CompareNodeWithCost{
+public:
+	bool operator()(NodeWithCost&, NodeWithCost&);
+};
+
+class CompareNodeWithCostMap {
+public:
+	bool operator()(NodeWithCost, NodeWithCost);
 };

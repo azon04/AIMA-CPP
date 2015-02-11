@@ -1,17 +1,16 @@
-#include "Graph_BFS.h"
-#include <queue>
-#include <vector>
+#include "Graph_DFS.h"
+#include <stack>
 
-Graph_BFS::Graph_BFS()
+Graph_DFS::Graph_DFS()
 {
 }
 
 
-Graph_BFS::~Graph_BFS()
+Graph_DFS::~Graph_DFS()
 {
 }
 
-Solution* Graph_BFS::Solve(Problem* problem)
+Solution* Graph_DFS::Solve(Problem* problem)
 {
 	Solution* solution;
 	Solution* prevSolution;
@@ -19,7 +18,7 @@ Solution* Graph_BFS::Solve(Problem* problem)
 
 	// Create Solution
 	solution = new Solution(0, node, 0);
-	
+
 
 	if (problem->isGoal(node))
 	{
@@ -27,10 +26,10 @@ Solution* Graph_BFS::Solve(Problem* problem)
 	}
 
 	// A FIFO Queue, and add the first node
-	std::queue<Node*> frontier;
+	std::stack<Node*> frontier;
 	frontier.push(node);
-	
-	std::queue<Solution*> solutionFrontier;
+
+	std::stack<Solution*> solutionFrontier;
 	solutionFrontier.push(solution);
 
 	// Explored array
@@ -38,8 +37,8 @@ Solution* Graph_BFS::Solve(Problem* problem)
 
 	while (!frontier.empty())
 	{
-		node = frontier.front(); frontier.pop();
-		prevSolution = solutionFrontier.front(); solutionFrontier.pop();
+		node = frontier.top(); frontier.pop();
+		prevSolution = solutionFrontier.top(); solutionFrontier.pop();
 
 		explored.push_back(node);
 
