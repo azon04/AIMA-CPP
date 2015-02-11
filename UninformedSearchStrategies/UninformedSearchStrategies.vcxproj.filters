@@ -36,9 +36,6 @@
     <ClInclude Include="IDS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BiSearch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph_BFS.cpp">
@@ -63,9 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IDS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BiSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

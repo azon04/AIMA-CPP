@@ -78,7 +78,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BiSearch.h" />
     <ClInclude Include="Graph_BFS.h" />
     <ClInclude Include="Graph_DFS.h" />
     <ClInclude Include="Graph_UCS.h" />
@@ -88,7 +87,6 @@
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BiSearch.cpp" />
     <ClCompile Include="Graph_BFS.cpp" />
     <ClCompile Include="Graph_DFS.cpp" />
     <ClCompile Include="Graph_UCS.cpp" />
