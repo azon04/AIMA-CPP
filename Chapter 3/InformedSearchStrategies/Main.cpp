@@ -1,4 +1,5 @@
 #include "Greedy_BestFirstSearch.h"
+#include "A_star.h"
 
 int main()
 {
@@ -108,7 +109,7 @@ int main()
 	problem.setStart(&arad);
 	problem.setGoal(bucharest.getState());
 
-	Greedy_BestFirstSearch solver;
+	A_star solver;
 	solver.setHeuristic(&table);
 	Solution* solution = solver.Solve(&problem);
 

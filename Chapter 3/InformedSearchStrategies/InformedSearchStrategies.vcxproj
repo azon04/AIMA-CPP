@@ -81,15 +81,19 @@
   <ItemGroup>
     <ClCompile Include="..\Common\Problem.cpp" />
     <ClCompile Include="..\Common\Solution.cpp" />
+    <ClCompile Include="A_star.cpp" />
     <ClCompile Include="Greedy_BestFirstSearch.cpp" />
     <ClCompile Include="HeuristicTableEvaluation.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RBFS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Problem.h" />
     <ClInclude Include="..\Common\Solution.h" />
+    <ClInclude Include="A_star.h" />
     <ClInclude Include="Greedy_BestFirstSearch.h" />
     <ClInclude Include="HeuristicTableEvaluation.h" />
+    <ClInclude Include="RBFS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
