@@ -1,6 +1,9 @@
 #include "RBFS.h"
 #include <vector>
+#include <ostream>
 #include <queue>
+#define MAX(a,b) a < b ? b : a
+#define MIN(a,b) a < b ? a : b
 
 RBFS::RBFS()
 {
@@ -19,8 +22,9 @@ Solution* RBFS::Solve(Problem* problem)
 
 RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, Solution* sol, Action* action)
 {
+	std::cout << "f_limit : " << f_limit << std::endl;
+	Solution* solution = new Solution(sol, nodeF.node, action);
 	if (problem->isGoal(nodeF.node)) {
-		Solution* solution = new Solution(sol, nodeF.node, action);
 		Result result(solution, f_limit);
 		return result;
 	}
@@ -28,13 +32,51 @@ RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, S
 	std::priority_queue<NodeF, std::vector<NodeF>, CompareNodeF> successors;
 
 	std::vector<Action*> actions = nodeF.node->getActions();
+	std::vector<int> costs = nodeF.node->getCosts();
 
 	for (int i = 0; i < actions.size(); i++)
 	{
-		NodeF childF((*(nodeF.node))[action[i]], 0, 0, 0);
+		Action* action = actions[i];
+		Node* child = (*(nodeF.node))[*action];
+		NodeF childF(child, 0, nodeF.g + costs[i], (*table)[child]); // TODO COST
+		childF.action = action;
+		childF.f = MAX(childF.g + childF.h, nodeF.f);
 		successors.push(childF);
 	}
 
+	while (true)
+	{
+
+		NodeF best = successors.top(); successors.pop();
+		if (best.f > f_limit) {
+			Result result(0, best.f);
+			return result;
+		}
+		NodeF alternative = successors.top(); successors.pop();
+
+
+		std::cout << "Best : " << best.node->getState().c_str() << ", score : " << best.f << std::endl;
+		std::cout << "Alternative : " << alternative.node->getState().c_str() << ", score : " << alternative.f << std::endl;
+
+		Result result = RBFS_function(problem, best, MIN(f_limit, alternative.f), solution, best.action);
+		best.f = result.f;
+
+		if (result.solution)
+		{
+			return result;
+		}
+
+		successors.push(best);
+		successors.push(alternative);
+
+	}
+
+
+}
+
+void RBFS::setHeuristic(HeuristicTableEvaluation* _evaluation)
+{
+	table = _evaluation;
 }
 
 bool RBFS::CompareNodeF::operator()(NodeF& node1, NodeF& node2)

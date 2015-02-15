@@ -1,7 +1,7 @@
 #pragma once
 #include "Problem.h"
 #include "Solution.h"
-
+#include "HeuristicTableEvaluation.h"
 
 
 class RBFS
@@ -27,6 +27,7 @@ public:
 
 	class CompareNodeF
 	{
+	public:
 		bool operator()(NodeF&, NodeF&);
 	};
 
@@ -35,7 +36,10 @@ public:
 	~RBFS();
 
 	Solution* Solve(Problem*);
+
+	void setHeuristic(HeuristicTableEvaluation* _evaluation);
 private:
 	Result& RBFS_function(Problem*, NodeF&, int, Solution*, Action*);
+	HeuristicTableEvaluation* table;
 };
 
