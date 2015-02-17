@@ -13,54 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{4a033fd3-3b21-49db-8b9f-e486cadf219f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Problem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_BFS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Solution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_DFS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_UCS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Recursive_DLS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Graph_BFS.cpp">
+    <ClCompile Include="..\Common\Problem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Solution.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Greedy_BestFirstSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Problem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Solution.cpp">
+    <ClCompile Include="HeuristicTableEvaluation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graph_DFS.cpp">
+    <ClCompile Include="A_star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graph_UCS.cpp">
+    <ClCompile Include="RBFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Recursive_DLS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\Problem.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Solution.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Greedy_BestFirstSearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeuristicTableEvaluation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="A_star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RBFS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

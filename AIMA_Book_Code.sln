@@ -5,7 +5,11 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VacumCleanerPerformanceMeasuring", "VacumCleanerPerformanceMeasuring\VacumCleanerPerformanceMeasuring.vcxproj", "{27743CB3-64E1-43E6-88DC-9039EF0B32B8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UninformedSearchStrategies", "UninformedSearchStrategies\UninformedSearchStrategies.vcxproj", "{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UninformedSearchStrategies", "Chapter 3\UninformedSearchStrategies\UninformedSearchStrategies.vcxproj", "{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter 3", "Chapter 3", "{0DD31C54-C734-423E-AA5A-A911CFF89943}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InformedSearchStrategies", "Chapter 3\InformedSearchStrategies\InformedSearchStrategies.vcxproj", "{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,16 @@ Global
 		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Debug|Win32.Build.0 = Debug|Win32
 		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Release|Win32.ActiveCfg = Release|Win32
 		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2}.Release|Win32.Build.0 = Release|Win32
+		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Debug|Win32.Build.0 = Debug|Win32
+		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Release|Win32.ActiveCfg = Release|Win32
+		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2} = {0DD31C54-C734-423E-AA5A-A911CFF89943}
+		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7} = {0DD31C54-C734-423E-AA5A-A911CFF89943}
 	EndGlobalSection
 EndGlobal
