@@ -1,6 +1,5 @@
 #include "RBFS.h"
 #include <vector>
-#include <ostream>
 #include <queue>
 #define MAX(a,b) a < b ? b : a
 #define MIN(a,b) a < b ? a : b
@@ -22,7 +21,6 @@ Solution* RBFS::Solve(Problem* problem)
 
 RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, Solution* sol, Action* action)
 {
-	std::cout << "f_limit : " << f_limit << std::endl;
 	Solution* solution = new Solution(sol, nodeF.node, action);
 	if (problem->isGoal(nodeF.node)) {
 		Result result(solution, f_limit);
@@ -38,7 +36,7 @@ RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, S
 	{
 		Action* action = actions[i];
 		Node* child = (*(nodeF.node))[*action];
-		NodeF childF(child, 0, nodeF.g + costs[i], (*table)[child]); // TODO COST
+		NodeF childF(child, 0, nodeF.g + costs[i], (*table)[child]);
 		childF.action = action;
 		childF.f = MAX(childF.g + childF.h, nodeF.f);
 		successors.push(childF);
@@ -53,11 +51,6 @@ RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, S
 			return result;
 		}
 		NodeF alternative = successors.top(); successors.pop();
-
-
-		std::cout << "Best : " << best.node->getState().c_str() << ", score : " << best.f << std::endl;
-		std::cout << "Alternative : " << alternative.node->getState().c_str() << ", score : " << alternative.f << std::endl;
-
 		Result result = RBFS_function(problem, best, MIN(f_limit, alternative.f), solution, best.action);
 		best.f = result.f;
 
