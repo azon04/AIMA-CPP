@@ -51,10 +51,10 @@ std::ostream& operator<<(std::ostream& os, Solution* _solution)
 		if (solution->getAction() == NULL && solution->getNode() == 0)
 			os << "This may be cutoff" << std::endl;
 		else if (solution->getAction() == NULL)
-			os << solution->getNode()->getState().c_str() << std::endl;
+			os << solution->getNode()->getState().toString().c_str() << std::endl;
 		else
 			os << "(" << solution->getAction()->getName().c_str() << ")"
-				<< solution->getNode()->getState().c_str() << std::endl;
+				<< solution->getNode()->getState().toString().c_str() << std::endl;
 	}
 
 	return os;

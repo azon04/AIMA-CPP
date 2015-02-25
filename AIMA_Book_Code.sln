@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter 3", "Chapter 3", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InformedSearchStrategies", "Chapter 3\InformedSearchStrategies\InformedSearchStrategies.vcxproj", "{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exercise-3.7", "Chapter 3\Exercise-3.7\Exercise-3.7.vcxproj", "{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,6 +31,10 @@ Global
 		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Debug|Win32.Build.0 = Debug|Win32
 		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Release|Win32.ActiveCfg = Release|Win32
 		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7}.Release|Win32.Build.0 = Release|Win32
+		{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19}.Debug|Win32.Build.0 = Debug|Win32
+		{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19}.Release|Win32.ActiveCfg = Release|Win32
+		{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{343F40B6-ABE2-49D1-A9FE-3C8418AE47C2} = {0DD31C54-C734-423E-AA5A-A911CFF89943}
 		{D800FD7D-2858-4E72-AEF9-D384F4DF0AD7} = {0DD31C54-C734-423E-AA5A-A911CFF89943}
+		{AA61AEBC-11B1-4B3E-A5CC-86FEF371BA19} = {0DD31C54-C734-423E-AA5A-A911CFF89943}
 	EndGlobalSection
 EndGlobal

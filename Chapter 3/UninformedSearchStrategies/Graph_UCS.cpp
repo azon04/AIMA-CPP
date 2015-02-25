@@ -45,7 +45,7 @@ Solution* Graph_UCS::Solve(Problem* problem)
 		NodeWithCost nodeWC = frontier.top(); frontier.pop();
 		node = nodeWC.getNode();
 		path_cost = nodeWC.getCost();
-		std::cout << "explore : " << node->getState().c_str() << " cost : " << nodeWC.getCost() << std::endl;
+		std::cout << "explore : " << node->getState().toString().c_str() << " cost : " << nodeWC.getCost() << std::endl;
 		prevSolution = solutionFrontier[nodeWC]; solutionFrontier[nodeWC] = 0;
 
 		explored.push_back(node);
@@ -71,7 +71,7 @@ Solution* Graph_UCS::Solve(Problem* problem)
 				solution = new Solution(prevSolution, child, action);
 
 				NodeWithCost nodeChildCost(child, path_cost + costs[i]);
-				std::cout << prevSolution->getNode()->getState().c_str() <<" -- : " << child->getState().c_str() << " cost : " << costs[i] << std::endl;
+				std::cout << prevSolution->getNode()->getState().toString().c_str() <<" -- : " << child->getState().toString().c_str() << " cost : " << costs[i] << std::endl;
 				frontier.push(nodeChildCost);
 				solutionFrontier.insert(std::pair<NodeWithCost, Solution*>(nodeChildCost, solution));
 				
