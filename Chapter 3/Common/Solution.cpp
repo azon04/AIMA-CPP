@@ -1,6 +1,7 @@
 #include "Solution.h"
 #include <stack>
 #include <iostream>
+#include <string>
 
 Solution::Solution()
 : currentNode(0), prevSolution(0), currentAction(0)
@@ -16,7 +17,8 @@ Solution::Solution(Solution* _prev, Node* _node, Action* _action)
 
 Solution::~Solution()
 {
-
+	if (prevSolution)
+		delete prevSolution;
 }
 
 Node* Solution::getNode()
@@ -51,10 +53,10 @@ std::ostream& operator<<(std::ostream& os, Solution* _solution)
 		if (solution->getAction() == NULL && solution->getNode() == 0)
 			os << "This may be cutoff" << std::endl;
 		else if (solution->getAction() == NULL)
-			os << solution->getNode()->getState().toString().c_str() << std::endl;
+			os << solution->getNode()->getState()->toString() << std::endl;
 		else
-			os << "(" << solution->getAction()->getName().c_str() << ")"
-				<< solution->getNode()->getState().toString().c_str() << std::endl;
+			os << "(" << solution->getAction()->getName() << ")"
+				<< solution->getNode()->getState()->toString() << std::endl;
 	}
 
 	return os;

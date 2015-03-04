@@ -1,4 +1,5 @@
 #include "Problem.h"
+#include <iostream>
 
 /*ACTION CLASS*/
 
@@ -40,25 +41,25 @@ State::~State()
 
 }
 
-int State::compareTo(const State& state)
+int State::compareTo(State* state)
 {
-	return valueString.compare(state.valueString);
+	return valueString.compare(state->valueString);
 }
 
-std::string State::toString()
+std::string& State::toString()
 {
 	return valueString;
 }
 
 /*NODE CLASS*/
 Node::Node() 
-: state("DefaultState"), 
+: state(nullptr), 
 parent(0)
 {
 
 }
 
-Node::Node(const State& _state) 
+Node::Node(State* _state) 
 : state(_state),
 parent(0)
 {
@@ -66,13 +67,13 @@ parent(0)
 }
 
 Node::Node(const std::string& _state)
-: state(_state),
+: state(new State(_state)),
 parent(0)
 {
 
 }
 
-Node::Node(Node* _parent, const State& _state)
+Node::Node(Node* _parent, State* _state)
 : parent(_parent),
 state(_state)
 {
@@ -84,12 +85,12 @@ Node::~Node()
 
 }
 
-void Node::setState(const State& _state)
+void Node::setState(State* _state)
 {
 	state = _state;
 }
 
-State& Node::getState()
+State* Node::getState()
 {
 	return state;
 }
@@ -124,7 +125,7 @@ void Node::setAction(Action* _action, Node* _node, int _cost) {
 
 /* PROBLEM CLASS */
 Problem::Problem()
-: name("Problem"), startNode(0), goalState("goal"), goalNode(0)
+: name("Problem"), startNode(0), goalState(nullptr), goalNode(0)
 {
 
 }
@@ -139,7 +140,7 @@ void Problem::setStart(Node* _node)
 	startNode = _node;
 }
 
-void Problem::setGoal(const State& _goal) 
+void Problem::setGoal(State* _goal) 
 {
 	goalState = _goal;
 }
@@ -153,9 +154,9 @@ bool Problem::isGoal(Node* _node)
 {
 	if (goalNode)
 	{
-		return _node->getState().compareTo(goalNode->getState()) == 0;
+		return _node->getState()->compareTo((goalNode->getState())) == 0;
 	}
-	else if (_node->getState().compareTo(goalState) == 0)
+	else if (_node->getState()->compareTo(goalState) == 0)
 	{
 		return true;
 	}

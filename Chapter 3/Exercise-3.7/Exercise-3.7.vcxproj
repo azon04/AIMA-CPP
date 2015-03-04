@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\Common;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\UninformedSearchStrategies;D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\Common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,7 +56,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -81,11 +81,21 @@
   <ItemGroup>
     <ClCompile Include="..\Common\Problem.cpp" />
     <ClCompile Include="..\Common\Solution.cpp" />
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_BFS.cpp" />
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_DFS.cpp" />
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_UCS.cpp" />
+    <ClCompile Include="..\UninformedSearchStrategies\IDS.cpp" />
+    <ClCompile Include="..\UninformedSearchStrategies\Recursive_DLS.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Problem.h" />
     <ClInclude Include="..\Common\Solution.h" />
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_BFS.h" />
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_DFS.h" />
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_UCS.h" />
+    <ClInclude Include="..\UninformedSearchStrategies\IDS.h" />
+    <ClInclude Include="..\UninformedSearchStrategies\Recursive_DLS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

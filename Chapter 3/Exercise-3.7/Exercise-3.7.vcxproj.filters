@@ -16,6 +16,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{d46009f3-6fdb-4a7c-b6bb-f06bc8971709}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UnInformedSearchStrategies">
+      <UniqueIdentifier>{939cb090-4858-45c9-8ef3-50ac7e544900}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Common\Problem.cpp">
@@ -27,6 +30,21 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_BFS.cpp">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_DFS.cpp">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UninformedSearchStrategies\Graph_UCS.cpp">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UninformedSearchStrategies\IDS.cpp">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UninformedSearchStrategies\Recursive_DLS.cpp">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Problem.h">
@@ -34,6 +52,21 @@
     </ClInclude>
     <ClInclude Include="..\Common\Solution.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_BFS.h">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_DFS.h">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UninformedSearchStrategies\Graph_UCS.h">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UninformedSearchStrategies\IDS.h">
+      <Filter>UnInformedSearchStrategies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UninformedSearchStrategies\Recursive_DLS.h">
+      <Filter>UnInformedSearchStrategies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
