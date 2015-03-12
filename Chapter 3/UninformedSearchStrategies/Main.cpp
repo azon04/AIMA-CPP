@@ -91,9 +91,9 @@ int main()
 
 	//Graph_BFS solver;
 	//Graph_DFS solver;
-	//Graph_UCS solver;
+	Graph_UCS solver;
 	//Recursive_DLS solver;
-	IDS solver;
+	//IDS solver;
 	Solution* solution = solver.Solve(&problem);
 	
 	if (solution)

@@ -44,6 +44,7 @@ Solution* Graph_DFS::Solve(Problem* problem)
 
 		// Get Posible Action
 		std::vector<Action*> actions = node->getActions();
+		std::vector<int> costs = node->getCosts();
 
 		// Check Goal
 		if (problem->isGoal(node))
@@ -58,7 +59,9 @@ Solution* Graph_DFS::Solve(Problem* problem)
 			if (std::find(explored.begin(), explored.end(), child) == explored.end())
 			{
 				// Create Solution
-				solution = new Solution(prevSolution, child, action);
+				solution = new Solution(prevSolution, child, action,
+					prevSolution == NULL ? 0 :
+					prevSolution->Cost() + costs[i]);
 
 
 				frontier.push(child);

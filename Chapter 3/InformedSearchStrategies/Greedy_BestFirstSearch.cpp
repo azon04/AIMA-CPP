@@ -45,7 +45,7 @@ Solution* Greedy_BestFirstSearch::Solve(Problem* problem)
 		NodeWithCost nodeWC = frontier.top(); frontier.pop();
 		node = nodeWC.getNode();
 		f_n = nodeWC.getCost();
-		prevSolution = solutionFrontier[nodeWC]; solutionFrontier[nodeWC] = 0;
+		prevSolution = solutionFrontier[nodeWC]; //solutionFrontier[nodeWC] = 0;
 
 		explored.push_back(node);
 
@@ -57,6 +57,8 @@ Solution* Greedy_BestFirstSearch::Solve(Problem* problem)
 
 		// Get Posible Action
 		std::vector<Action*> actions = node->getActions();
+		std::vector<int> costs = node->getCosts();
+
 		for (int i = 0; i < actions.size(); i++)
 		{
 			Action* action = actions[i];
@@ -65,7 +67,9 @@ Solution* Greedy_BestFirstSearch::Solve(Problem* problem)
 			{
 				// TODO check if value is in frontier
 				// Create Solution
-				solution = new Solution(prevSolution, child, action);
+				solution = new Solution(prevSolution, child, action,
+					prevSolution == NULL ? 0 :
+					prevSolution->Cost() + costs[i]);
 
 				f_n = (*table)[child];
 				NodeWithCost nodeChildCost(child, f_n);

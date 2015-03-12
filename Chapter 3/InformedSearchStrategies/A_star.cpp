@@ -1,8 +1,11 @@
 #include "A_star.h"
 #include <queue>
+#include <iostream>
+
+int NodeWithAStarCost::inc = 0;
 
 NodeWithAStarCost::NodeWithAStarCost(Node* _node, int _f_n, int _g_n)
-: NodeWithCost(_node, _f_n + _g_n)
+: NodeWithCost(_node, _f_n + _g_n), id(inc++)
 {
 	f_n = _f_n;
 }
@@ -51,7 +54,7 @@ Solution* A_star::Solve(Problem* problem)
 	NodeWithAStarCost nodeWithCost(node, path_cost, g_n);
 	frontier.push(nodeWithCost);
 
-	std::map<NodeWithAStarCost, Solution*, CompareNodeWithCostMap> solutionFrontier;
+	std::map<NodeWithAStarCost, Solution*, CompareNodeAStarSame> solutionFrontier;
 	solutionFrontier.insert(std::pair<NodeWithAStarCost, Solution*>(nodeWithCost, solution));
 
 	// Explored array
@@ -62,7 +65,7 @@ Solution* A_star::Solve(Problem* problem)
 		NodeWithAStarCost nodeWC = frontier.top(); frontier.pop();
 		node = nodeWC.getNode();
 		path_cost = nodeWC.getPathCost();
-		prevSolution = solutionFrontier[nodeWC]; solutionFrontier[nodeWC] = 0;
+		prevSolution = solutionFrontier[nodeWC]; //solutionFrontier[nodeWC] = 0;
 
 		explored.push_back(node);
 
@@ -84,12 +87,17 @@ Solution* A_star::Solve(Problem* problem)
 			{
 				// TODO check if value is in frontier
 				// Create Solution
-				solution = new Solution(prevSolution, child, action);
+				solution = new Solution(prevSolution, child, action,
+					prevSolution == NULL ? 0 :
+					prevSolution->Cost() + costs[i]);
 
 				g_n = (*table)[child];
 				NodeWithAStarCost nodeChildCost(child, path_cost + costs[i], g_n );
 				frontier.push(nodeChildCost);
-				solutionFrontier.insert(std::pair<NodeWithAStarCost, Solution*>(nodeChildCost, solution));
+				auto ret = solutionFrontier.insert(std::pair<NodeWithAStarCost, Solution*>(nodeChildCost, solution));
+				if (ret.second == false) {
+					std::cout << "Exist" << std::endl;
+				}
 
 			}
 		}
@@ -101,4 +109,9 @@ Solution* A_star::Solve(Problem* problem)
 void A_star::setHeuristic(HeuristicTableEvaluation* _evaluation)
 {
 	table = _evaluation;
+}
+
+bool CompareNodeAStarSame::operator()(NodeWithAStarCost node1, NodeWithAStarCost node2)
+{
+	return node1.getID() < node2.getID();
 }
