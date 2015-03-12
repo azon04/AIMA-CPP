@@ -1,4 +1,5 @@
 #include "Problem.h"
+#include <iostream>
 
 /*ACTION CLASS*/
 
@@ -22,22 +23,57 @@ const std::string& Action::getName()
 	return name;
 }
 
+/* STATE CLASS */
+State::State() :
+valueString("")
+{
+
+}
+
+State::State(const std::string& value) :
+valueString(value)
+{
+
+}
+
+State::~State()
+{
+
+}
+
+int State::compareTo(State* state)
+{
+	return valueString.compare(state->valueString);
+}
+
+std::string& State::toString()
+{
+	return valueString;
+}
+
 /*NODE CLASS*/
 Node::Node() 
-: state("DefaultState"), 
+: state(nullptr), 
 parent(0)
 {
 
 }
 
-Node::Node(const std::string& _state) 
+Node::Node(State* _state) 
 : state(_state),
 parent(0)
 {
 
 }
 
-Node::Node(Node* _parent, const std::string& _state)
+Node::Node(const std::string& _state)
+: state(new State(_state)),
+parent(0)
+{
+
+}
+
+Node::Node(Node* _parent, State* _state)
 : parent(_parent),
 state(_state)
 {
@@ -49,12 +85,12 @@ Node::~Node()
 
 }
 
-void Node::setState(const std::string& _state)
+void Node::setState(State* _state)
 {
 	state = _state;
 }
 
-std::string& Node::getState()
+State* Node::getState()
 {
 	return state;
 }
@@ -89,7 +125,7 @@ void Node::setAction(Action* _action, Node* _node, int _cost) {
 
 /* PROBLEM CLASS */
 Problem::Problem()
-: name("Problem"), startNode(0), goalState("goal"), goalNode(0)
+: name("Problem"), startNode(0), goalState(nullptr), goalNode(0)
 {
 
 }
@@ -104,7 +140,7 @@ void Problem::setStart(Node* _node)
 	startNode = _node;
 }
 
-void Problem::setGoal(const std::string& _goal) 
+void Problem::setGoal(State* _goal) 
 {
 	goalState = _goal;
 }
@@ -118,9 +154,9 @@ bool Problem::isGoal(Node* _node)
 {
 	if (goalNode)
 	{
-		return _node->getState().compare(goalNode->getState()) == 0;
+		return _node->getState()->compareTo((goalNode->getState())) == 0;
 	}
-	else if (_node->getState().compare(goalState) == 0) 
+	else if (_node->getState()->compareTo(goalState) == 0)
 	{
 		return true;
 	}
@@ -180,5 +216,5 @@ bool CompareNodeWithCost::operator()(NodeWithCost& node1, NodeWithCost& node2)
 /* For MAP<> */
 bool CompareNodeWithCostMap::operator()(NodeWithCost node1, NodeWithCost node2)
 {
-	return (node1.getCost() < node2.getCost());
+	return (node1.getCost() < node2.getCost()) ? true : false;
 }

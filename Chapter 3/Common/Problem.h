@@ -15,16 +15,29 @@ private:
 	std::string name;
 };
 
+class State {
+public:
+	State();
+	State(const std::string&);
+	virtual ~State();
+	virtual int compareTo(State* state);
+	virtual std::string& toString();
+protected:
+	/* Data Member */
+	std::string valueString;
+};
+
 class Node {
 public:
 	Node();
 	Node(const std::string&);
-	Node(Node*, const std::string&);
+	Node(State*);
+	Node(Node*, State*);
 	~Node();
 
-	void setState(const std::string&);
+	void setState(State*);
 	
-	std::string& getState();
+	State* getState();
 
 	Node* operator[](Action&);
 
@@ -35,7 +48,7 @@ public:
 	void setAction(Action*, Node*, int);
 private:
 	/* Data Member */
-	std::string state;
+	State* state;
 	Node* parent;
 	std::map<std::string, Node*> relatedNodes;
 	std::vector<Action*> actions;
@@ -50,7 +63,7 @@ public :
 	~Problem();
 
 	void setStart(Node*);
-	void setGoal(const std::string&);
+	void setGoal(State*);
 	void setGoal(Node*);
 
 	bool isGoal(Node*);
@@ -63,7 +76,7 @@ private:
 	std::string name;
 	Node* startNode;
 	Node* goalNode;
-	std::string goalState;
+	State* goalState;
 	std::vector<Action*> actions;
 };
 
