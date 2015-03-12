@@ -15,14 +15,17 @@ public:
 	};
 
 	struct NodeF {
+		NodeF(){};
 		NodeF(Node* _node, int _f, int _g, int _h) 
-		: node(_node), f(_f), g(_g), h(_h), action(0)
+			: node(_node), f(_f), g(_g), h(_h), action(0), 
+			cost(0)
 		{};
 		Node* node;
 		Action* action;
 		int f;
 		int g;
 		int h;
+		int cost;
 	};
 
 	class CompareNodeF

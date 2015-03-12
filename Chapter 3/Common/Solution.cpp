@@ -4,13 +4,22 @@
 #include <string>
 
 Solution::Solution()
-: currentNode(0), prevSolution(0), currentAction(0)
+: currentNode(0), prevSolution(0), currentAction(0), cost(0)
 {
 
 }
 
 Solution::Solution(Solution* _prev, Node* _node, Action* _action)
-: currentNode(_node), prevSolution(_prev), currentAction(_action)
+	: currentNode(_node), prevSolution(_prev), currentAction(_action),
+	cost(0)
+{
+
+}
+
+Solution::Solution(Solution* _prev, Node* _node, Action* _action,
+	int _cost)
+: currentNode(_node), prevSolution(_prev), currentAction(_action),
+cost(_cost)
 {
 
 }

@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\UninformedSearchStrategies;D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\Common;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\InformedSearchStrategies;D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\UninformedSearchStrategies;D:\Fauzan\Projects\AIMA\AIMA_Book_Code\Chapter 3\Common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -81,6 +81,10 @@
   <ItemGroup>
     <ClCompile Include="..\Common\Problem.cpp" />
     <ClCompile Include="..\Common\Solution.cpp" />
+    <ClCompile Include="..\InformedSearchStrategies\A_star.cpp" />
+    <ClCompile Include="..\InformedSearchStrategies\Greedy_BestFirstSearch.cpp" />
+    <ClCompile Include="..\InformedSearchStrategies\HeuristicTableEvaluation.cpp" />
+    <ClCompile Include="..\InformedSearchStrategies\RBFS.cpp" />
     <ClCompile Include="..\UninformedSearchStrategies\Graph_BFS.cpp" />
     <ClCompile Include="..\UninformedSearchStrategies\Graph_DFS.cpp" />
     <ClCompile Include="..\UninformedSearchStrategies\Graph_UCS.cpp" />
@@ -91,6 +95,10 @@
   <ItemGroup>
     <ClInclude Include="..\Common\Problem.h" />
     <ClInclude Include="..\Common\Solution.h" />
+    <ClInclude Include="..\InformedSearchStrategies\A_star.h" />
+    <ClInclude Include="..\InformedSearchStrategies\Greedy_BestFirstSearch.h" />
+    <ClInclude Include="..\InformedSearchStrategies\HeuristicTableEvaluation.h" />
+    <ClInclude Include="..\InformedSearchStrategies\RBFS.h" />
     <ClInclude Include="..\UninformedSearchStrategies\Graph_BFS.h" />
     <ClInclude Include="..\UninformedSearchStrategies\Graph_DFS.h" />
     <ClInclude Include="..\UninformedSearchStrategies\Graph_UCS.h" />

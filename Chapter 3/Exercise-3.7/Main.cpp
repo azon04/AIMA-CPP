@@ -3,6 +3,12 @@
 #include "Graph_BFS.h"
 #include "Graph_DFS.h"
 #include "Graph_UCS.h"
+#include "Recursive_DLS.h"
+#include "IDS.h"
+#include "HeuristicTableEvaluation.h"
+#include "RBFS.h"
+#include "A_star.h"
+#include "Greedy_BestFirstSearch.h"
 #include <math.h>
 #include <string>
 
@@ -12,6 +18,8 @@ public:
 	~PositionState();
 	int compareTo(State* state);
 	std::string& toString();
+	int X() const;
+	int Y() const;
 private:
 	int x;
 	int y;
@@ -24,6 +32,16 @@ int Distance(int x1, int y1, int x2, int y2) {
 	float distance = std::sqrtf(divX*divX + divY*divY);
 
 	return static_cast<int>(distance);
+}
+
+void printAndDelete(Solution* solution) {
+	if (solution) {
+		std::cout << solution << std::endl ;
+		std::cout << "COST : " << solution->Cost() << std::endl << std::endl;
+		delete solution;
+	}
+	else
+		std::cout << "No Solution Found" << std::endl << std::endl;
 }
 
 int main() {
@@ -101,11 +119,7 @@ int main() {
 
 	std::cout << "BFS Solution :" << std::endl;
 	std::cout << "================" << std::endl;
-	if (solution) {
-		std::cout << solution << std::endl << std::endl;
-		delete solution;
-	} else
-		std::cout << "No Solution Found" << std::endl << std::endl;
+	printAndDelete(solution);
 
 	// Solve using DFS
 	Graph_DFS dfsSolver;
@@ -113,27 +127,62 @@ int main() {
 
 	std::cout << "DFS Solution :" << std::endl;
 	std::cout << "================" << std::endl;
-	if (solution) {
-		std::cout << solution << std::endl << std::endl;
-		delete solution;
-	}
-	else
-		std::cout << "No Solution Found" << std::endl << std::endl;
+	printAndDelete(solution);
 
-	// Solve using DFS
+	// Solve using UCS
 	Graph_UCS ucsSolver;
 	solution = ucsSolver.Solve(&problem);
 
 	std::cout << "UCS Solution :" << std::endl;
 	std::cout << "================" << std::endl;
-	if (solution) {
-		std::cout << solution << std::endl << std::endl;
-		delete solution;
-	}
-	else
-		std::cout << "No Solution Found" << std::endl << std::endl;
+	printAndDelete(solution);
 
-	
+	// Solve using IDS
+	IDS IDSSolver;
+	solution = IDSSolver.Solve(&problem);
+
+	std::cout << "IDS Solution :" << std::endl;
+	std::cout << "================" << std::endl;
+	printAndDelete(solution);
+
+	// Heuristic Table
+	HeuristicTableEvaluation table;
+	table.add(&s, 100);
+	for (int i = 0; i < 14; i++) {
+		PositionState* current = static_cast<PositionState*>(trans[i].getState());
+		PositionState* goal = static_cast<PositionState*>(g.getState());
+		table.add(&trans[i], Distance(current->X(), current->Y(),
+			goal->X(), goal->Y()));
+	}
+	table.add(&g, 0);
+
+	// Solve using RBFS
+	RBFS RBFSSolver;
+	RBFSSolver.setHeuristic(&table);
+	solution = RBFSSolver.Solve(&problem);
+
+	std::cout << "RBFS :" << std::endl;
+	std::cout << "================" << std::endl;
+	printAndDelete(solution);
+
+	// Solve using Greedy_BFSSolver
+	Greedy_BestFirstSearch Greedy_BFSSolver;
+	Greedy_BFSSolver.setHeuristic(&table);
+	solution = Greedy_BFSSolver.Solve(&problem);
+
+	std::cout << "Greedy_BFSSolver :" << std::endl;
+	std::cout << "================" << std::endl;
+	printAndDelete(solution);
+
+	// Solve using A*
+	A_star AStarSolver;
+	AStarSolver.setHeuristic(&table);
+	solution = AStarSolver.Solve(&problem);
+
+	std::cout << "AStar Solver :" << std::endl;
+	std::cout << "================" << std::endl;
+	printAndDelete(solution);
+
 	return 0;
 }
 
@@ -163,4 +212,14 @@ std::string& PositionState::toString()
 	valueString += ",";
 	valueString += std::to_string(y);
 	return valueString;
+}
+
+int PositionState::X() const
+{
+	return x;
+}
+
+int PositionState::Y() const
+{
+	return y;
 }

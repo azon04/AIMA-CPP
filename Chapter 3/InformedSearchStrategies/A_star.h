@@ -10,9 +10,17 @@ public:
 	~NodeWithAStarCost();
 
 	int getPathCost();
+	int getID() { return id; }
 
 private:
 	int f_n; // to keep track of f(n) or path cost
+	static int inc;
+	int id;
+};
+
+class CompareNodeAStarSame {
+public:
+	bool operator()(NodeWithAStarCost, NodeWithAStarCost);
 };
 
 class A_star
@@ -28,4 +36,5 @@ public:
 private:
 	HeuristicTableEvaluation* table;
 };
+
 

@@ -67,7 +67,9 @@ Solution* Graph_UCS::Solve(Problem* problem)
 			{
 				// TODO check if value is in frontier
 				// Create Solution
-				solution = new Solution(prevSolution, child, action);
+				solution = new Solution(prevSolution, child, action,
+					prevSolution == NULL ? 0 :
+					prevSolution->Cost() + costs[i]);
 
 				NodeWithCost nodeChildCost(child, path_cost + costs[i]);
 				frontier.push(nodeChildCost);

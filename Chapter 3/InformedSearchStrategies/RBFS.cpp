@@ -21,7 +21,9 @@ Solution* RBFS::Solve(Problem* problem)
 
 RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, Solution* sol, Action* action)
 {
-	Solution* solution = new Solution(sol, nodeF.node, action);
+	Solution* solution = new Solution(sol, nodeF.node, action,
+		sol == NULL ? 0 :
+		sol->Cost() + nodeF.cost);
 	if (problem->isGoal(nodeF.node)) {
 		Result result(solution, f_limit);
 		return result;
@@ -39,6 +41,7 @@ RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, S
 		NodeF childF(child, 0, nodeF.g + costs[i], (*table)[child]);
 		childF.action = action;
 		childF.f = MAX(childF.g + childF.h, nodeF.f);
+		childF.cost = costs[i];
 		successors.push(childF);
 	}
 
@@ -50,7 +53,15 @@ RBFS::Result& RBFS::RBFS_function(Problem* problem, NodeF& nodeF, int f_limit, S
 			Result result(0, best.f);
 			return result;
 		}
-		NodeF alternative = successors.top(); successors.pop();
+		// TO DO if successor only one
+		NodeF alternative;
+		if (successors.empty()) {
+			alternative = best;
+		}
+		else 
+		{
+			alternative = successors.top(); successors.pop();
+		}
 		Result result = RBFS_function(problem, best, MIN(f_limit, alternative.f), solution, best.action);
 		best.f = result.f;
 

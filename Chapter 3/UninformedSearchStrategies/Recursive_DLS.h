@@ -14,7 +14,7 @@ public:
 	Solution* cutOff;
 
 private:
-	Solution* RDLS(Node*, Problem*, int, Solution*, Action* action);
+	Solution* RDLS(Node*, Problem*, int, Solution*, Action* action, int cost);
 	
 };
 

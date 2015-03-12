@@ -110,7 +110,7 @@ int main()
 	problem.setStart(&arad);
 	problem.setGoal(bucharest.getState());
 
-	RBFS solver;
+	A_star solver;
 	solver.setHeuristic(&table);
 	Solution* solution = solver.Solve(&problem);
 
